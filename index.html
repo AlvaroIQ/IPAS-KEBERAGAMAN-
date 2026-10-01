@@ -344,7 +344,7 @@
             <div id="screen-home" class="form-group">
                 <div style="text-align: center; margin-bottom: 10px;">
                     <h2 style="font-size: 1.2rem; color: var(--dark);">👋 SIAPA NAMAMU?</h2>
-                    <p style="font-size: 0.9rem; color: #64748b;">Pilih nama kamu untuk memulai permainan.</p>
+                    <p style="font-size: 0.9rem; color: #64748b;">Pilih nama kamu untuk memulai ulangan.</p>
                 </div>
                 
                 <div class="form-group">
@@ -707,7 +707,7 @@
             },
             {
                 id: 18, level: 2, type: "pg",
-                q: "Yang termasuk contoh seni dan musik tradisional Indonesia adalah gamelan, angklung, tari tradisional, serta pertunjukan wayang.",
+                q: "Yang termasuk contoh seni dan musik tradisional Indonesia adalah ....",
                 options: [
                     "Gamelan, angklung, tari tradisional, dan pertunjukan wayang",
                     "Piano klasik, gitar elektrik, dan drum set modern",
@@ -784,13 +784,8 @@
             },
             {
                 id: 28, level: 3, type: "complex",
-                q: "Perhatikan pernyataan berikut tentang globalisasi!<br>1. Kemajuan teknologi komunikasi dapat mempercepat penyebaran informasi antarnegara.<br>2. Kemajuan teknologi transportasi membuat pengiriman barang antarnegara menjadi lebih cepat.<br>3. Globalisasi menyebabkan suatu negara tidak dapat berhubungan dengan negara lain.<br>4. Kemajuan kerja sama ekonomi dapat memudahkan terjadinya kesepakatan ekonomi antarnegara.<br><br>Pernyataan yang benar adalah ....<br><strong>Pilih 2 jawaban yang benar!</strong>",
+                q: "Perhatikan pernyataan berikut tentang globalisasi!<br>1. Kemajuan teknologi komunikasi dapat mempercepat penyebaran informasi antarnegara.<br>2. Kemajuan teknologi transportasi membuat pengiriman barang antarnegara menjadi lebih cepat.<br>3. Globalisasi menyebabkan suatu negara tidak dapat berhubungan dengan negara lain.<br>4. Kemajuan kerja sama ekonomi dapat memudahkan terjadinya kesepakatan ekonomi antarnegara.<br><br>Pernyataan yang benar adalah ....<br><strong>Pilih jawaban lebih dari 1!</strong>",
                 options: [
-                    "Pernyataan 1, 2, dan 4", // opsi pengecoh tapi kita pakai index kombinasi khusus
-                    "1, 2, dan 3",
-                    "1, 2, dan 4",
-                    "1, 3, dan 4",
-                    "2, 3, dan 4"
                 ],
                 // Untuk soal 28, kunci yang benar sesuai sumber adalah kombinasi nomor 1, 2, dan 4 (Opsi b pada buku). Karena ini pilihan ganda kompleks dengan 2 jawaban centang, kita sesuaikan opsi check:
                 // Mari gunakan array checkbox pilihan kustom:
@@ -823,7 +818,7 @@
             },
             {
                 id: 30, level: 3, type: "multiple_checkbox",
-                q: "Rani ingin ikut menjaga kearifan lokal di tengah perkembangan globalisasi. Tindakan yang dapat dilakukan Rani adalah ....<br><strong>Pilih semua jawaban yang benar!</strong>",
+                q: "Rani ingin ikut menjaga kearifan lokal di tengah perkembangan globalisasi. Tindakan yang dapat dilakukan Rani adalah ....<br><strong>Pilih jawaban benar lebih dari 1!</strong>",
                 options: [
                     "Mempelajari budaya dan bahasa daerah.",
                     "Mengikuti festival atau pertunjukan budaya.",
