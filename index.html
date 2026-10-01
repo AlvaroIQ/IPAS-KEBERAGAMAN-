@@ -164,12 +164,6 @@
             font-weight: 600;
         }
 
-        .lives {
-            color: var(--danger);
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-        }
-
         /* Progress Bar */
         .progress-container {
             width: 100%;
@@ -286,7 +280,7 @@
             border-radius: 10px;
         }
 
-        data-table {
+        .data-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
@@ -396,7 +390,7 @@
                 <div class="game-stats">
                     <span id="stat-level">Level 1</span>
                     <span id="stat-score">Skor: 0</span>
-                    <span class="lives" id="stat-lives">❤️❤️❤️</span>
+                    <span></span>
                 </div>
 
                 <div class="progress-container">
@@ -432,16 +426,8 @@
                     <div>⭐ Skor Level: <strong id="lc-score">0</strong></div>
                     <div>✅ Jawaban Benar: <strong id="lc-correct">0</strong></div>
                     <div>❌ Jawaban Salah: <strong id="lc-wrong">0</strong></div>
-                    <div>❤️ Sisa Nyawa: <strong id="lc-lives">3</strong></div>
                 </div>
                 <button class="btn" onclick="proceedNextLevel()">➡️ LANJUT LEVEL</button>
-            </div>
-
-            <!-- GAME OVER SCREEN -->
-            <div id="screen-game-over" class="hidden text-center" style="gap: 15px;">
-                <h2 style="color: var(--danger);">💔 GAME OVER</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Jangan menyerah! Coba lagi dan pelajari kembali materinya.</p>
-                <button class="btn btn-danger" onclick="restartGame()">🔄 COBA LAGI</button>
             </div>
 
             <!-- FINAL RESULT SCREEN -->
@@ -452,7 +438,6 @@
                     <div>Skor: <strong id="res-score">0</strong></div>
                     <div>Benar: <strong id="res-correct">0</strong></div>
                     <div>Salah: <strong id="res-wrong">0</strong></div>
-                    <div>Nyawa tersisa: <strong id="res-lives">3</strong></div>
                     <div>Persentase: <strong id="res-percent">0%</strong></div>
                 </div>
                 <p id="res-message" style="font-size: 0.9rem; font-weight: 600; color: var(--primary-dark);"></p>
@@ -508,7 +493,7 @@
 
                 <div class="flex-row no-print">
                     <button class="btn btn-danger" onclick="confirmClearData()">🗑️ HAPUS SEMUA</button>
-                    <button class="btn btn-success" onclick="window.print()">🖨️️ CETAK HASIL</button>
+                    <button class="btn btn-success" onclick="window.print()">🖨 CETAK HASIL</button>
                 </div>
             </div>
 
@@ -520,7 +505,6 @@
                     <div>Benar: <strong id="det-correct"></strong></div>
                     <div>Salah: <strong id="det-wrong"></strong></div>
                     <div>Persentase: <strong id="det-percent"></strong></div>
-                    <div>Sisa Nyawa: <strong id="det-lives"></strong></div>
                 </div>
                 <div class="table-container" id="det-questions-table">
                     <!-- Detail soal siswa -->
@@ -785,13 +769,7 @@
             {
                 id: 28, level: 3, type: "complex",
                 q: "Perhatikan pernyataan berikut tentang globalisasi!<br>1. Kemajuan teknologi komunikasi dapat mempercepat penyebaran informasi antarnegara.<br>2. Kemajuan teknologi transportasi membuat pengiriman barang antarnegara menjadi lebih cepat.<br>3. Globalisasi menyebabkan suatu negara tidak dapat berhubungan dengan negara lain.<br>4. Kemajuan kerja sama ekonomi dapat memudahkan terjadinya kesepakatan ekonomi antarnegara.<br><br>Pernyataan yang benar adalah ....<br><strong>Pilih jawaban lebih dari 1!</strong>",
-                options: [
-                ],
-                // Untuk soal 28, kunci yang benar sesuai sumber adalah kombinasi nomor 1, 2, dan 4 (Opsi b pada buku). Karena ini pilihan ganda kompleks dengan 2 jawaban centang, kita sesuaikan opsi check:
-                // Mari gunakan array checkbox pilihan kustom:
-                // Pernyataan 1 (Benar), Pernyataan 2 (Benar), Pernyataan 3 (Salah), Pernyataan 4 (Benar). Jadi 2 jawaban utama yang benar adalah Pernyataan 1 dan Pernyataan 2 (atau 1,2,4 sesuai soal buku). Mari buat opsi check:
-                // Di buku asli, soal 28 adalah pilihan ganda biasa dengan opsi a(1,2,3), b(1,2,4), c(1,3,4), d(2,3,4). Namun instruksi prompt meminta: "Gunakan CHECKBOX... Siswa wajib memilih tepat 2 jawaban... Penilaian hanya menganggap benar jika kombinasi 2 jawaban sesuai kunci."
-                // Mari kita sesuaikan daftar pilihan untuk soal 28 berupa 4 pernyataan, dan siswa mencentang 2 pernyataan yang benar dari 4 pernyataan tersebut!
+                options: [],
                 isCheckboxList: true,
                 statements: [
                     "Kemajuan teknologi komunikasi dapat mempercepat penyebaran informasi antarnegara.",
@@ -799,9 +777,6 @@
                     "Globalisasi menyebabkan suatu negara tidak dapat berhubungan dengan negara lain.",
                     "Kemajuan kerja sama ekonomi dapat memudahkan terjadinya kesepakatan ekonomi antarnegara."
                 ],
-                correctAnswers: [1, 2, 4], // Indeks pernyataan yang benar (0, 1, dan 3 - yaitu pernyataan 1, 2, dan 4)
-                // Wait, prompt says: "Siswa wajib memilih tepat 2 jawaban." Mari periksa pernyataan di soal:
-                // 1: Benar, 2: Benar, 3: Salah, 4: Benar. Berarti ada 3 pernyataan benar (1, 2, 4). Jika instruksi meminta tepat 2 jawaban, mari kita sesuaikan kunci atau biarkan pernyataan 1 dan 2 sebagai 2 jawaban benar utama. Mari kita set correctAnswers: [0, 1] (pernyataan 1 & 2).
                 correctAnswers: [0, 1],
                 explanation: "Pernyataan yang benar mengenai dampak positif globalisasi adalah kemajuan teknologi komunikasi dan transportasi (pernyataan 1 dan 2)."
             },
@@ -825,7 +800,7 @@
                     "Menganggap budaya asing selalu lebih baik daripada budaya sendiri.",
                     "Memanfaatkan media sosial untuk memperkenalkan budaya daerah."
                 ],
-                correctAnswers: [0, 1, 3], // Indeks 0, 1, dan 3 benar. Indeks 2 salah.
+                correctAnswers: [0, 1, 3],
                 explanation: "Tindakan pelestarian kearifan lokal meliputi mempelajari budaya daerah, mengikuti festival, dan mempromosikannya lewat media sosial."
             }
         ];
@@ -835,12 +810,11 @@
         let currentLevel = 1;
         let currentQuestionIndex = 0;
         let score = 0;
-        let lives = 3;
         let correctCount = 0;
         let wrongCount = 0;
-        let gameRecords = []; // Disimpan ke localStorage
+        let gameRecords = []; 
         let activeQuestions = [];
-        let studentAnswersLog = []; // Menyimpan jawaban siswa untuk review & detail guru
+        let studentAnswersLog = []; 
 
         // --- INITIALIZATION ---
         window.onload = function() {
@@ -884,7 +858,7 @@
         function switchScreen(screenId) {
             const screens = [
                 'screen-home', 'screen-level-intro', 'screen-game', 
-                'screen-level-complete', 'screen-game-over', 'screen-result', 
+                'screen-level-complete', 'screen-result', 
                 'screen-review', 'screen-teacher-login', 'screen-teacher-dashboard', 
                 'screen-student-detail'
             ];
@@ -900,7 +874,6 @@
             if (!currentStudent) return;
             currentLevel = 1;
             score = 0;
-            lives = 3;
             correctCount = 0;
             wrongCount = 0;
             currentQuestionIndex = 0;
@@ -910,7 +883,6 @@
         }
 
         function showLevelIntro() {
-            // Tentukan range soal berdasarkan level
             let startIdx = 0, endIdx = 9;
             if (currentLevel === 2) { startIdx = 10; endIdx = 19; currentQuestionIndex = 10; }
             else if (currentLevel === 3) { startIdx = 20; endIdx = 29; currentQuestionIndex = 20; }
@@ -935,11 +907,9 @@
             const q = questions[currentQuestionIndex];
             document.getElementById('stat-level').textContent = `Level ${currentLevel}`;
             document.getElementById('stat-score').textContent = `Skor: ${score}`;
-            document.getElementById('stat-lives').textContent = '❤️'.repeat(lives);
             document.getElementById('student-tag').textContent = currentStudent;
             document.getElementById('stat-question-num').textContent = `Soal ${currentQuestionIndex + 1} dari 30`;
 
-            // PERBAIKAN 3: Progress Bar Akurat 1/30 sampai 30/30
             const progressPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
             document.getElementById('game-progress').style.width = `${progressPercent}%`;
 
@@ -960,7 +930,6 @@
                     optContainer.appendChild(btn);
                 });
             } else if (q.type === 'complex') {
-                // PERBAIKAN 1: Soal 28 Pilihan Ganda Kompleks dengan Checkbox tepat 2 jawaban
                 let html = '<p style="font-size:0.85rem; color:#d97706; font-weight:600; margin-bottom:5px;">Pilih 2 pernyataan yang benar:</p>';
                 q.statements.forEach((stmt, idx) => {
                     html += `
@@ -972,7 +941,6 @@
                 });
                 optContainer.innerHTML = html;
             } else if (q.type === 'tf_group') {
-                // PERBAIKAN 2: Soal 29 Benar atau Salah per pernyataan
                 let html = `<table class="tf-table">
                     <tr><th>Pernyataan</th><th style="width:60px;" class="center">B</th><th style="width:60px;" class="center">S</th></tr>`;
                 q.statements.forEach((stmt, idx) => {
@@ -987,7 +955,6 @@
                 html += `</table>`;
                 optContainer.innerHTML = html;
             } else if (q.type === 'multiple_checkbox') {
-                // Soal 30 Checkbox Pilihan Ganda Kompleks
                 let html = '<p style="font-size:0.85rem; color:#d97706; font-weight:600; margin-bottom:5px;">Pilih semua jawaban yang benar!</p>';
                 q.options.forEach((opt, idx) => {
                     html += `
@@ -1028,7 +995,6 @@
                 studentAnswerDesc = q.options[selectedPgIndex];
                 correctAnswerDesc = q.options[q.answer];
 
-                // Highlight buttons
                 const buttons = document.querySelectorAll('#options-container .option-btn');
                 buttons.forEach((btn, i) => {
                     if (i === q.answer) btn.classList.add('correct');
@@ -1038,26 +1004,22 @@
                 selectedPgIndex = null;
 
             } else if (q.type === 'complex') {
-                // PERBAIKAN 1 Validasi tepat 2 jawaban
                 const checkboxes = document.querySelectorAll('input[name="complex_28"]:checked');
                 if (checkboxes.length !== 2) {
                     alert("Kamu wajib memilih tepat 2 jawaban untuk soal ini!");
                     return;
                 }
                 const selectedVals = Array.from(checkboxes).map(cb => parseInt(cb.value));
-                // Cek apakah selectedVals sama dengan q.correctAnswers (harus tepat 2)
                 const sortedSelected = [...selectedVals].sort();
                 const sortedCorrect = [...q.correctAnswers].sort();
-                isCorrect = (sortedSelected.length === sortedCorrect.length && sortedSelected.every((val, i) => val === sortedCorrect.id || val === sortedCorrect[i]));
+                isCorrect = (sortedSelected.length === sortedCorrect.length && sortedSelected.every((val, i) => val === sortedCorrect[i]));
                 
                 studentAnswerDesc = selectedVals.map(v => `Pernyataan ${v+1}`).join(", ");
                 correctAnswerDesc = q.correctAnswers.map(v => `Pernyataan ${v+1}`).join(", ");
 
-                // Disable checkboxes
                 document.querySelectorAll('input[name="complex_28"]').forEach(cb => cb.disabled = true);
 
             } else if (q.type === 'tf_group') {
-                // PERBAIKAN 2 Validasi Benar/Salah per pernyataan
                 let allAnswered = true;
                 let userAnsArray = [];
                 q.statements.forEach((stmt, idx) => {
@@ -1075,7 +1037,6 @@
                 studentAnswerDesc = userAnsArray.map((v, i) => `Pernyataan ${i+1}: ${v ? 'Benar' : 'Salah'}`).join("; ");
                 correctAnswerDesc = q.statements.map((s, i) => `Pernyataan ${i+1}: ${s.answer ? 'Benar' : 'Salah'}`).join("; ");
 
-                // Disable radios
                 q.statements.forEach((_, idx) => {
                     document.querySelectorAll(`input[name="tf_${idx}"]`).forEach(r => r.disabled = true);
                 });
@@ -1096,7 +1057,6 @@
                 document.querySelectorAll('input[name="mc_30"]').forEach(cb => cb.disabled = true);
             }
 
-            // Simpan log jawaban untuk review & detail guru
             studentAnswersLog.push({
                 questionNumber: currentQuestionIndex + 1,
                 questionText: q.q,
@@ -1117,40 +1077,28 @@
                 feedbackBox.innerHTML = `🎉 BENAR!<br>${q.explanation}`;
             } else {
                 playSound('wrong');
-                lives--;
                 wrongCount++;
                 feedbackBox.className = "feedback-box wrong";
                 feedbackBox.innerHTML = `❌ BELUM TEPAT.<br>${q.explanation}`;
             }
 
             document.getElementById('stat-score').textContent = `Skor: ${score}`;
-            document.getElementById('stat-lives').textContent = '❤️'.repeat(lives);
 
             document.getElementById('btn-submit-answer').classList.add('hidden');
             document.getElementById('btn-next-question').classList.remove('hidden');
-
-            if (lives <= 0) {
-                // Nyawa habis
-                setTimeout(() => {
-                    switchScreen('screen-game-over');
-                }, 1500);
-            }
         }
 
         function nextQuestion() {
             playSound('click');
             currentQuestionIndex++;
 
-            // Cek apakah akhir level (setiap 10 soal: index 10, 20, 30)
             if (currentQuestionIndex === 10 || currentQuestionIndex === 20 || currentQuestionIndex === 30) {
                 if (currentQuestionIndex === 10) currentLevel = 2;
                 else if (currentQuestionIndex === 20) currentLevel = 3;
 
                 if (currentQuestionIndex === 30) {
-                    // Game selesai sepenuhnya
                     finishGame();
                 } else {
-                    // Selesai level 1 atau 2
                     showLevelCompleteScreen();
                 }
             } else {
@@ -1164,7 +1112,6 @@
             document.getElementById('lc-score').textContent = score;
             document.getElementById('lc-correct').textContent = correctCount;
             document.getElementById('lc-wrong').textContent = wrongCount;
-            document.getElementById('lc-lives').textContent = lives;
             switchScreen('screen-level-complete');
         }
 
@@ -1182,21 +1129,18 @@
             document.getElementById('res-score').textContent = score;
             document.getElementById('res-correct').textContent = correctCount;
             document.getElementById('res-wrong').textContent = wrongCount;
-            document.getElementById('res-lives').textContent = lives;
             document.getElementById('res-percent').textContent = `${percent}%`;
 
             let msg = "Hebat! Kamu telah menyelesaikan petualangan budaya dengan sangat baik!";
             if (percent < 60) msg = "Terus semangat belajar dan kenali kembali keragaman budaya Indonesia!";
             document.getElementById('res-message').textContent = msg;
 
-            // Simpan rekam jejak ke localStorage
             const record = {
                 id: Date.now(),
                 name: currentStudent,
                 score: score,
                 correct: correctCount,
                 wrong: wrongCount,
-                lives: lives,
                 percent: percent,
                 date: new Date().toLocaleDateString('id-ID'),
                 details: studentAnswersLog
@@ -1242,11 +1186,6 @@
             switchScreen('screen-home');
         }
 
-        function restartGame() {
-            playSound('click');
-            startAdventure();
-        }
-
         function openStudentMode() {
             playSound('click');
             backToHome();
@@ -1280,16 +1219,14 @@
                 filtered = filtered.filter(r => r.name.toLowerCase().includes(searchVal));
             }
 
-            // Sorting
             filtered.sort((a, b) => {
                 if (sortVal === 'name') return a.name.localeCompare(b.name);
                 if (sortVal === 'score') return b.score - a.score;
                 if (sortVal === 'correct') return b.correct - a.correct;
-                if (sortVal === 'wrong') return a.wrong - b.wrong;
+                if (sortVal === 'wrong') return b.wrong - a.wrong;
                 return 0;
             });
 
-            // Ringkasan kelas
             const totalPlays = gameRecords.length;
             const uniqueStudents = new Set(gameRecords.map(r => r.name)).size;
             let avgScore = totalPlays > 0 ? Math.round(gameRecords.reduce((acc, r) => acc + r.score, 0) / totalPlays) : 0;
@@ -1316,7 +1253,6 @@
                         <th>Skor</th>
                         <th>Benar</th>
                         <th>Salah</th>
-                        <th>Nyawa</th>
                         <th>Persentase</th>
                         <th class="no-print">Aksi</th>
                     </tr>
@@ -1329,7 +1265,6 @@
                         <td>${r.score}</td>
                         <td><span class="badge badge-success">${r.correct}</span></td>
                         <td><span class="badge badge-danger">${r.wrong}</span></td>
-                        <td>${r.lives}</td>
                         <td>${r.percent}%</td>
                         <td class="no-print">
                             <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem; width:auto;" onclick="viewStudentDetail(${r.id})">Detail</button>
@@ -1352,7 +1287,6 @@
             document.getElementById('det-correct').textContent = rec.correct;
             document.getElementById('det-wrong').textContent = rec.wrong;
             document.getElementById('det-percent').textContent = rec.percent + '%';
-            document.getElementById('det-lives').textContent = rec.lives;
 
             const qContainer = document.getElementById('det-questions-table');
             if (!rec.details || rec.details.length === 0) {
